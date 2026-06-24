@@ -851,14 +851,17 @@
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
+    const course = document.getElementById('course').value;
+    const location = document.getElementById('location').value;
     if (!name || !phone) return;
 
-    // Ẩn form, hiện thông báo thành công
+    fetch('https://script.google.com/macros/s/AKfycby3uyw8FXox4Bc9PZAxX9EZO1F3aO5bixLtnwzQ57JQvi44iJ7JDg6Ro1KmwyQFTLespA/exec', {
+      method: 'POST',
+      body: JSON.stringify({ name, phone, course, location }),
+    }).catch(() => {});
+
     document.getElementById('formContent').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
-
-    // TODO: Thay bằng Formspree hoặc Google Apps Script để nhận dữ liệu thật
-    // fetch('https://formspree.io/f/YOUR_FORM_ID', { method: 'POST', body: new FormData(e.target) });
   }
 
   // Escape key đóng modal
