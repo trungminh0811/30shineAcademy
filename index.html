@@ -857,6 +857,8 @@
 
     fetch('https://script.google.com/macros/s/AKfycby3uyw8FXox4Bc9PZAxX9EZO1F3aO5bixLtnwzQ57JQvi44iJ7JDg6Ro1KmwyQFTLespA/exec', {
       method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, course, location }),
     }).catch(() => {});
 
