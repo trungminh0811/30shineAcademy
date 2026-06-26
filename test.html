@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Test Đầu Vào – Khóa Ký Kết | 30Shine Academy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; color: #1a1a1a; }
+
+    header { background: #111; padding: 20px 16px; text-align: center; }
+    header .logo { color: #c8a951; font-size: 20px; font-weight: 800; letter-spacing: 2px; }
+    header .sub { color: #888; font-size: 13px; margin-top: 4px; }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+
+    .card { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+
+    .intro p { font-size: 14px; color: #555; line-height: 1.7; }
+    .intro p + p { margin-top: 8px; }
+
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; }
+    .field input { width: 100%; padding: 10px 12px; border: 1.5px solid #ddd; border-radius: 6px; font-size: 15px; transition: border .15s; }
+    .field input:focus { outline: none; border-color: #c8a951; }
+
+    .section-label { background: #111; color: #c8a951; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 8px 14px; border-radius: 5px; margin-bottom: 16px; }
+
+    .question { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid #f2f2f2; }
+    .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .q-num { font-size: 11px; color: #c8a951; font-weight: 700; letter-spacing: .5px; margin-bottom: 5px; }
+    .q-text { font-size: 15px; font-weight: 500; line-height: 1.55; margin-bottom: 12px; }
+
+    .option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1.5px solid #e8e8e8; border-radius: 6px; margin-bottom: 8px; cursor: pointer; transition: border .15s, background .15s; }
+    .option:hover { border-color: #c8a951; background: #fefbf2; }
+    .option.picked { border-color: #c8a951; background: #fefbf2; }
+    .option input { margin-top: 2px; flex-shrink: 0; accent-color: #c8a951; }
+    .option span { font-size: 14px; line-height: 1.5; }
+
+    .progress-wrap { margin-bottom: 14px; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 5px; }
+    .progress-bar { height: 4px; background: #e8e8e8; border-radius: 2px; }
+    .progress-fill { height: 100%; background: #c8a951; border-radius: 2px; transition: width .3s; }
+
+    .btn { width: 100%; padding: 14px; background: #c8a951; color: #111; border: none; border-radius: 8px; font-size: 16px; font-weight: 800; cursor: pointer; letter-spacing: .5px; transition: background .2s; }
+    .btn:hover { background: #b8943e; }
+    .btn:disabled { background: #ccc; color: #888; cursor: not-allowed; }
+
+    /* Result */
+    #resultArea { display: none; text-align: center; padding: 36px 20px; }
+    .result-icon { font-size: 52px; margin-bottom: 16px; }
+    .result-score { font-size: 48px; font-weight: 800; margin-bottom: 6px; }
+    .result-label { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .result-msg { font-size: 14px; color: #555; line-height: 1.7; }
+    .pass .result-score, .pass .result-label { color: #2d7a4f; }
+    .fail .result-score, .fail .result-label { color: #c0392b; }
+
+    @media (max-width: 480px) {
+      .container { padding: 10px; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">30SHINE ACADEMY</div>
+  <div class="sub">Bài Test Đầu Vào — Khóa Ký Kết</div>
+</header>
+
+<div class="container">
+
+  <div class="card intro">
+    <p>Bài test gồm <strong>24 câu hỏi</strong>, chia thành 3 nhóm. Thời gian làm bài: <strong>15–20 phút</strong>.</p>
+    <p>Hãy chọn đáp án phù hợp nhất với bản thân — không có câu trả lời đúng hay sai tuyệt đối. Trả lời thật thành thật để chúng tôi hiểu đúng về bạn.</p>
+  </div>
+
+  <div class="card" id="infoCard">
+    <div class="field">
+      <label>Họ và tên *</label>
+      <input type="text" id="cName" placeholder="Nguyễn Văn A">
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label>Số điện thoại *</label>
+      <input type="tel" id="cPhone" placeholder="0912 345 678">
+    </div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="card" id="submitCard">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span>Tiến độ làm bài</span>
+        <span id="progressText">0 / 24 câu</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0"></div></div>
+    </div>
+    <button class="btn" id="submitBtn" onclick="submitTest()">NỘP BÀI</button>
+  </div>
+
+  <div class="card" id="resultArea">
+    <div class="result-icon" id="rIcon"></div>
+    <div class="result-score" id="rScore"></div>
+    <div class="result-label" id="rLabel"></div>
+    <div class="result-msg" id="rMsg"></div>
+  </div>
+
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWwe4XHL852facMqwjQ18Vonjp2gQ-0c4jCe1RBkvVb4xC7ayov8xU4x3C-UlKVzyMSA/exec';
+const PASS_SCORE = 20;
+
+const GROUPS = [
+  { id:'A', name:'NHÓM A — CAM KẾT & ỔN ĐỊNH CÁ NHÂN' },
+  { id:'B', name:'NHÓM B — TƯ DUY DỊCH VỤ & THÁI ĐỘ' },
+  { id:'C', name:'NHÓM C — XỬ LÝ TÌNH HUỐNG' }
+];
+
+const Q = [
+  // GROUP A (8 câu)
+  { g:'A', t:'Lý do chính khiến bạn muốn học nghề tóc tại thời điểm này là gì?', o:['Muốn có nghề ổn định, thu nhập tốt hơn công việc hiện tại','Người quen giới thiệu, thử xem thế nào','Chưa biết làm gì nên thử','Gia đình định hướng'], c:[0] },
+  { g:'A', t:'Khóa Ký Kết yêu cầu cam kết làm việc tại 30Shine tối thiểu 18 tháng sau tốt nghiệp. Với bạn, điều này là:', o:['Hoàn toàn ổn — tôi đang tìm môi trường để gắn bó lâu dài','Hơi dài, nhưng vì có cam kết việc làm nên chấp nhận','Được, nhưng nếu có cơ hội tốt hơn tôi vẫn sẽ cân nhắc','Tôi chưa chắc chắn về điều này'], c:[0,1] },
+  { g:'A', t:'Trong 18 tháng tới, bạn có kế hoạch nào có thể ảnh hưởng đến việc đi làm liên tục không?', o:['Không có — tôi ổn định hoàn toàn','Có thể kết hôn nhưng vẫn tiếp tục làm được','Dự định học thêm song song','Có một vài kế hoạch chưa chắc chắn'], c:[0,1] },
+  { g:'A', t:'Gia đình bạn có ủng hộ việc bạn theo nghề tóc không?', o:['Hoàn toàn ủng hộ','Không phản đối nhưng chưa thực sự tin tưởng','Có người phản đối, nhưng tôi tự quyết được','Gia đình chưa biết tôi định học'], c:[0,1] },
+  { g:'A', t:'Nếu tháng đầu đi làm lương thấp hơn kỳ vọng, bạn sẽ làm gì?', o:['Chấp nhận — biết rằng cần thời gian để thu nhập tăng dần','Hỏi lý do và tìm cách cải thiện kỹ năng nhanh hơn','Cảm thấy thất vọng nhưng vẫn tiếp tục','Nghĩ lại xem có nên tiếp tục không'], c:[0,1] },
+  { g:'A', t:'Bạn có thể làm ca xoay (sáng 8h–17h hoặc chiều 13h–22h) không?', o:['Hoàn toàn được','Được, nhưng ưu tiên ca sáng','Khó một chút nhưng cố được','Tôi chỉ làm được giờ hành chính'], c:[0,1] },
+  { g:'A', t:'Trong giai đoạn học 4–6 tháng, tài chính sinh hoạt của bạn sẽ được xoay xở như thế nào?', o:['Đã chuẩn bị sẵn / gia đình hỗ trợ','Vay vốn / vay ngân hàng — đã có kế hoạch cụ thể','Chưa chắc nhưng sẽ tìm cách','Đây là vấn đề tôi đang lo lắng nhất'], c:[0,1] },
+  { g:'A', t:'Điều gì khiến bạn chọn Khóa Ký Kết thay vì tự học hoặc học ở nơi khác?', o:['Có cam kết việc làm bằng văn bản — an tâm về đầu ra','Thương hiệu lớn, môi trường chuyên nghiệp','Người quen học và chia sẻ tốt','Học phí và thời gian phù hợp'], c:[0] },
+  // GROUP B (8 câu)
+  { g:'B', t:'Khi khách không hài lòng với kiểu tóc bạn vừa làm, phản ứng đầu tiên của bạn là:', o:['Xin lỗi và hỏi khách muốn điều chỉnh như thế nào','Giải thích rằng mình đã làm đúng theo yêu cầu ban đầu','Mời quản lý ra giải quyết ngay','Nói xin lỗi nhưng trong lòng cảm thấy bực'], c:[0] },
+  { g:'B', t:'Bạn đang phục vụ khách, còn 10 phút là hết ca. Khách mới bước vào và không có nhân viên nào rảnh. Bạn sẽ:', o:['Chào khách, hỏi có thể chờ 10 phút không rồi mình phục vụ ngay','Báo quản lý để xử lý','Nói đã hết ca, không thể nhận thêm','Kết thúc nhanh với khách hiện tại rồi nhận khách mới'], c:[0] },
+  { g:'B', t:'Với bạn, phục vụ khách tốt có nghĩa là:', o:['Khách hài lòng và muốn quay lại','Làm đúng kỹ thuật như đã học','Nhanh, gọn, không để khách chờ','Khách không phàn nàn là được'], c:[0] },
+  { g:'B', t:'Khách quen của đồng nghiệp đến khi đồng nghiệp đó đang nghỉ phép. Khách không muốn bạn làm, chỉ muốn chờ. Bạn sẽ:', o:['Tôn trọng ý kiến khách và hỏi xem có muốn đặt lịch ngày khác không','Thuyết phục khách để mình làm thay','Báo quản lý xử lý','Nhắn cho đồng nghiệp để họ tự xử lý'], c:[0] },
+  { g:'B', t:'Bạn thấy mình phù hợp với công việc tiếp xúc và phục vụ khách hàng trực tiếp mỗi ngày không?', o:['Rất phù hợp — tôi thích giao tiếp và làm việc với người','Ổn — không phải điểm mạnh nhất nhưng học được','Bình thường — chủ yếu tôi thích phần kỹ thuật','Không chắc — tôi hướng nội hơn'], c:[0,1] },
+  { g:'B', t:'Khi đồng nghiệp làm sai ảnh hưởng đến công việc của bạn, bạn thường xử lý thế nào?', o:['Nói thẳng với đồng nghiệp đó một cách bình tĩnh','Báo quản lý để có hướng xử lý','Im lặng và tự xử lý phần của mình','Tức giận nhưng không nói gì'], c:[0] },
+  { g:'B', t:'Sau 8 tiếng đứng phục vụ khách, bạn mệt nhưng vẫn còn khách cuối ngày. Bạn sẽ:', o:['Cố duy trì thái độ và chất lượng như đầu ngày','Làm đủ việc nhưng không còn nhiều năng lượng giao tiếp','Xin đồng nghiệp hỗ trợ nếu được','Làm nhanh để sớm kết thúc'], c:[0] },
+  { g:'B', t:'Điều bạn lo ngại nhất khi làm việc với khách hàng trực tiếp là:', o:['Kỹ năng tay nghề chưa đủ đáp ứng yêu cầu','Khách khó tính, phàn nàn nhiều','Áp lực doanh số hàng tháng','Giao tiếp còn chưa tự nhiên'], c:[0] },
+  // GROUP C (8 câu)
+  { g:'C', t:'Trong giờ học, bạn không hiểu một kỹ thuật giảng viên vừa dạy. Bạn sẽ:', o:['Giơ tay hỏi ngay trong giờ','Chờ hết giờ rồi hỏi riêng giảng viên','Hỏi bạn học gần nhất','Về xem lại tài liệu tự học'], c:[0,1] },
+  { g:'C', t:'Bạn mắc lỗi kỹ thuật khi thực hành trên khách thật và khách phát hiện ra. Bạn sẽ:', o:['Xin lỗi khách, báo ngay giảng viên/quản lý và đề nghị sửa','Tự sửa mà không báo ai','Giải thích với khách rằng mình đang trong giai đoạn học','Lúng túng không biết xử lý thế nào'], c:[0] },
+  { g:'C', t:'Đồng nghiệp liên tục đến muộn và bạn phải gánh thêm việc. Bạn đã nhắc nhưng không thay đổi. Bạn sẽ:', o:['Báo quản lý để có hướng xử lý chính thức','Tiếp tục nhắc nhở đồng nghiệp','Chấp nhận vì không muốn mâu thuẫn','Tự điều chỉnh để việc của mình không bị ảnh hưởng'], c:[0] },
+  { g:'C', t:'Quản lý góp ý bạn cần cải thiện thái độ với khách. Bạn thấy mình không sai. Bạn sẽ:', o:['Lắng nghe và xin ý kiến cụ thể hơn để hiểu quan điểm của quản lý','Giải thích bình tĩnh quan điểm của mình','Dạ rồi để đó','Cảm thấy bị oan và khó chịu'], c:[0,1] },
+  { g:'C', t:'Tháng đầu đi làm thu nhập thấp hơn kỳ vọng, gia đình hỏi han nhiều. Bạn sẽ:', o:['Giải thích với gia đình về lộ trình thu nhập và kiên trì tiếp tục','Tìm cách tăng thu nhập nhanh hơn bằng cách nhận thêm khách','Cảm thấy áp lực nhưng vẫn tiếp tục','Bắt đầu tìm hiểu các lựa chọn khác'], c:[0,1] },
+  { g:'C', t:'Salon bận đột xuất, quản lý nhờ bạn ở lại thêm 1–2 tiếng. Đây là lần thứ 3 trong tháng. Bạn sẽ:', o:['Ở lại hỗ trợ và sau đó trao đổi với quản lý về sắp xếp lịch hợp lý hơn','Ở lại mà không nói gì','Xin về đúng giờ vì đã có kế hoạch','Ở lại nhưng thể hiện rõ sự không hài lòng'], c:[0] },
+  { g:'C', t:'Bạn có xung đột nhỏ với đồng nghiệp. Hôm sau vẫn phải cùng ca làm việc. Bạn sẽ:', o:['Gác lại chuyện cá nhân, làm việc bình thường như không có gì','Cố giải quyết mâu thuẫn trước khi vào ca','Hạn chế tương tác nhưng vẫn làm đủ việc','Báo quản lý để không phải làm ca chung'], c:[0,1] },
+  { g:'C', t:'Sau 3 tháng học, bạn cảm thấy tiến độ chậm hơn các bạn cùng lớp. Bạn sẽ:', o:['Nhờ giảng viên chỉ thêm và tăng thời gian luyện tập','Tự ôn luyện thêm ở nhà','Cảm thấy nản nhưng vẫn tiếp tục','Đặt câu hỏi liệu chương trình học có phù hợp với mình không'], c:[0,1] },
+];
+
+const LABELS = ['A','B','C','D'];
+let answered = 0;
+
+function buildQuestions() {
+  const area = document.getElementById('questionsArea');
+  let currentGroup = '';
+  let html = '';
+  let globalNum = 0;
+
+  GROUPS.forEach(grp => {
+    const qList = Q.filter(q => q.g === grp.id);
+    html += `<div class="card">`;
+    html += `<div class="section-label">${grp.name}</div>`;
+    qList.forEach(q => {
+      globalNum++;
+      const idx = globalNum - 1;
+      html += `<div class="question" id="qblock-${idx}">`;
+      html += `<div class="q-num">Câu ${globalNum}</div>`;
+      html += `<div class="q-text">${q.t}</div>`;
+      q.o.forEach((opt, oi) => {
+        html += `<label class="option" id="opt-${idx}-${oi}" onclick="pickOption(${idx},${oi})">
+          <input type="radio" name="q${idx}" value="${oi}" onclick="pickOption(${idx},${oi})">
+          <span><strong>${LABELS[oi]}.</strong> ${opt}</span>
+        </label>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  area.innerHTML = html;
+}
+
+function pickOption(qIdx, optIdx) {
+  const radios = document.querySelectorAll(`input[name="q${qIdx}"]`);
+  const wasAnswered = Array.from(radios).some(r => r.checked);
+
+  // Reset option styles
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById(`opt-${qIdx}-${i}`);
+    if (el) el.classList.remove('picked');
+  }
+  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add('picked');
+  document.querySelector(`input[name="q${qIdx}"][value="${optIdx}"]`).checked = true;
+
+  if (!wasAnswered) {
+    answered++;
+    updateProgress();
+  }
+}
+
+function updateProgress() {
+  document.getElementById('progressText').textContent = `${answered} / 24 câu`;
+  document.getElementById('progressFill').style.width = `${(answered / 24) * 100}%`;
+}
+
+function submitTest() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+
+  if (!name || !phone) {
+    alert('Vui lòng điền họ tên và số điện thoại.');
+    return;
+  }
+  if (answered < 24) {
+    alert(`Bạn còn ${24 - answered} câu chưa trả lời. Vui lòng hoàn thành tất cả câu hỏi.`);
+    return;
+  }
+
+  // Score
+  let score = 0;
+  const answers = [];
+  Q.forEach((q, idx) => {
+    const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+    const val = selected ? parseInt(selected.value) : -1;
+    answers.push(LABELS[val] || '');
+    if (val !== -1 && q.c.includes(val)) score++;
+  });
+
+  const result = score >= PASS_SCORE ? 'ĐẠT' : 'CHƯA ĐẠT';
+
+  // Show result
+  document.getElementById('submitCard').style.display = 'none';
+  document.getElementById('questionsArea').style.display = 'none';
+  document.getElementById('infoCard').style.display = 'none';
+
+  const ra = document.getElementById('resultArea');
+  ra.style.display = 'block';
+  ra.className = 'card';
+
+  document.getElementById('rIcon').textContent = '✅';
+  document.getElementById('rScore').textContent = '';
+  document.getElementById('rLabel').textContent = 'Đã nhận bài!';
+  document.getElementById('rMsg').textContent = 'Cảm ơn bạn đã hoàn thành bài test. Nhân viên tư vấn sẽ liên hệ với bạn trong vòng 24 giờ.';
+
+  // Send to Google Sheet
+  const params = new URLSearchParams({ type: 'test', name, phone, score, result });
+  answers.forEach((a, i) => params.append(`q${i + 1}`, a));
+  fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' }).catch(() => {});
+}
+
+buildQuestions();
+</script>
+</body>
+</html>
