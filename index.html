@@ -856,7 +856,7 @@
     if (!name || !phone) return;
 
     const params = new URLSearchParams({ name, phone, course, location });
-    fetch('https://script.google.com/macros/s/AKfycbzkZXmnYu0BNabSZePMQgeBz-C5XG2GrN9-_v8lNWT1IouSsqkNVYD_orxNvVd6lNW-Ew/exec?' + params.toString(), {
+    fetch('https://script.google.com/macros/s/AKfycbwg6bTZotK1uc6juHOM6bMomZwsoUIdtaL0oFZ8YsV_c6g2Wnj5zsCfleWHkItwZ_OGfA/exec?' + params.toString(), {
       method: 'GET',
       mode: 'no-cors',
     }).catch(() => {});
