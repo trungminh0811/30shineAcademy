@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>30Shine Academy – Trung Tâm Đào Tạo Nghề Tóc Nam Chính Quy</title>
+  <meta name="description" content="30Shine Academy – học nghề tóc nam chính quy, chứng chỉ Sở Lao động, cam kết việc làm tại 100+ salon. Thu nhập 12–18 triệu/tháng." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%); color: var(--white); padding: 80px 0 96px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(245,158,11,0.06); pointer-events: none; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
+    .hero .section-label { background: rgba(245,158,11,0.15); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.15; color: var(--white); margin-bottom: 16px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-desc { font-size: 17px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .hero-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 22px 18px; }
+    .hero-card:first-child { margin-top: 28px; }
+    .hero-card:last-child { margin-top: -28px; }
+    .hero-card-icon { font-size: 30px; margin-bottom: 10px; }
+    .hero-card-num { font-size: 26px; font-weight: 900; color: var(--gold); }
+    .hero-card-lbl { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    .courses-section { background: var(--gray0); }
+    .courses-main { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .courses-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .secondary-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray3); margin-bottom: 12px; }
+
+    .course-hero-card { background: var(--white); border-radius: var(--radius); border: 2px solid var(--gray2); padding: 32px 28px; transition: all 0.2s; cursor: pointer; display: flex; flex-direction: column; }
+    .course-hero-card.navy-border { border-color: var(--blue); }
+    .course-hero-card.gold-border { border-color: var(--gold); }
+    .course-hero-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .course-top-badge { font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; width: fit-content; }
+    .badge-flagship { background: #DBEAFE; color: #1E40AF; }
+    .badge-special  { background: #FEF3C7; color: #92400E; }
+    .course-name-lg { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .course-dur { font-size: 13px; color: var(--gray4); margin-bottom: 14px; }
+    .course-price-h { font-size: 26px; font-weight: 900; color: var(--blue); margin-bottom: 4px; }
+    .gold-border .course-price-h { color: var(--gold2); }
+    .course-tagline { font-size: 14px; color: var(--gray4); line-height: 1.5; flex: 1; margin-bottom: 20px; }
+    .btn-course { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 11px 22px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.2s; width: fit-content; }
+    .navy-border .btn-course { background: var(--navy); color: var(--white); }
+    .gold-border .btn-course { background: var(--gold); color: var(--navy); }
+
+    .course-mini { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray2); padding: 20px; display: flex; align-items: center; gap: 14px; transition: all 0.2s; cursor: pointer; }
+    .course-mini:hover { box-shadow: var(--shadow); border-color: var(--blue); }
+    .course-mini-icon { font-size: 28px; flex-shrink: 0; }
+    .course-mini-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .course-mini-meta { font-size: 12px; color: var(--gray4); }
+    .course-mini-price { font-size: 14px; font-weight: 800; color: var(--blue); margin-left: auto; flex-shrink: 0; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .courses-main, .courses-secondary { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="index.html">
+        <div class="logo-icon">✂</div>
+        <div class="logo-text">
+          <span class="logo-name">30Shine Academy</span>
+          <span class="logo-sub">Trung tâm đào tạo nghề tóc nam</span>
+        </div>
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="active">Trang chủ</a></li>
+        <li><a href="khoa-hoc.html">Khóa học</a></li>
+        <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+        <li><a href="lien-he.html">Liên hệ</a></li>
+      </ul>
+      <div class="navbar-cta"><a href="lien-he.html" class="btn btn-gold btn-sm">Đăng ký tư vấn</a></div>
+      <button class="hamburger" onclick="openMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <a class="navbar-logo" href="index.html"><div class="logo-icon">✂</div><div class="logo-text"><span class="logo-name">30Shine Academy</span></div></a>
+    <button onclick="closeMobileNav()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy)">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="khoa-hoc.html">Khóa học</a></li>
+    <li><a href="ve-chung-toi.html">Về chúng tôi</a></li>
+    <li><a href="lien-he.html">Liên hệ</a></li>
+  </ul>
+  <div class="mobile-nav-cta"><a href="lien-he.html" class="btn btn-gold">Đăng ký tư vấn miễn phí →</a></div>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="section-label">Được cấp phép bởi Sở Lao động – TBXH</div>
+        <h1>Học nghề tóc nam<br><em>chính quy – có đầu ra</em></h1>
+        <p class="hero-desc">Thực hành 100% trên đầu thật. Chứng chỉ Sở Lao động. 30Shine cam kết việc làm ngay sau tốt nghiệp tại 100+ salon toàn quốc.</p>
+        <div class="hero-btns">
+          <a href="lien-he.html" class="btn btn-gold btn-lg">Đăng ký tư vấn miễn phí</a>
+          <a href="khoa-hoc.html" class="btn btn-lg" style="background:rgba(255,255,255,0.12);color:#fff;border:1.5px solid rgba(255,255,255,0.3)">Xem khóa học →</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card"><div class="hero-card-icon">✂️</div><div class="hero-card-num">100+</div><div class="hero-card-lbl">Salon 30Shine toàn quốc</div></div>
+        <div class="hero-card"><div class="hero-card-icon">👥</div><div class="hero-card-num">600+</div><div class="hero-card-lbl">Khách thật để thực hành</div></div>
+        <div class="hero-card"><div class="hero-card-icon">🏅</div><div class="hero-card-num">5+</div><div class="hero-card-lbl">Năm kinh nghiệm giảng viên</div></div>
+        <div class="hero-card"><div class="hero-card-icon">💰</div><div class="hero-card-num">18tr</div><div class="hero-card-lbl">Thu nhập khởi điểm/tháng</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Khóa học chính quy</span></div>
+      <div class="stat-item"><span class="stat-num">100+</span><span class="stat-lbl">Salon đối tác toàn quốc</span></div>
+      <div class="stat-item"><span class="stat-num">600+</span><span class="stat-lbl">Khách thật thực hành</span></div>
+      <div class="stat-item"><span class="stat-num">12–18tr</span><span class="stat-lbl">Thu nhập khởi điểm</span></div>
+      <div class="stat-item"><span class="stat-num">2</span><span class="stat-lbl">Cơ sở: Hà Nội & TP. HCM</span></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-label">Điểm khác biệt</div>
+      <h2 class="section-title">Tại sao chọn 30Shine Academy?</h2>
+      <p class="section-sub">Không chỉ dạy nghề — chúng tôi đứng ra chịu trách nhiệm về đầu ra của học viên.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-icon-wrap">✋</div><div class="why-title">Thực hành 100% đầu thật</div><div class="why-desc">Cầm kéo từ buổi đầu tiên trên khách hàng thật — không học chay, không ma-nơ-canh nhựa.</div></div>
+      <div class="why-item"><div class="why-icon-wrap">🏅</div><div class="why-title">Chứng chỉ Sở Lao động</div><div class="why-desc">Bằng sơ cấp nghề chính quy do Sở LĐ–TBXH cấp. Hành nghề, mở tiệm, dạy nghề đều được công nhận.</div></div>
+      <div class="why-item"><div class="why-icon-wrap">💼</div><div class="why-title">Đầu ra có hệ thống</div><div class="why-desc">100+ salon 30Shine sẵn sàng nhận học viên ngay sau tốt nghiệp. Không lo học xong không có việc.</div></div>
+      <div class="why-item"><div class="why-icon-wrap">👨‍🏫</div><div class="why-title">Giảng viên 5+ năm kinh nghiệm</div><div class="why-desc">Đào tạo và làm việc thực chiến trong hệ thống 30Shine — truyền nghề thật, không lý thuyết màu mè.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="courses-section">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px">
+      <div><div class="section-label">Chương trình học</div><h2 class="section-title" style="margin-bottom:0">Chọn khóa học phù hợp</h2></div>
+      <a href="khoa-hoc.html" class="btn btn-outline-navy btn-sm">Xem tất cả →</a>
+    </div>
+    <div class="courses-main">
+      <div class="course-hero-card navy-border" onclick="window.location='khoa-hoc.html#chuyennghiep'">
+        <div class="course-top-badge badge-flagship">🏆 ĐƯỢC CHỌN NHIỀU NHẤT</div>
+        <div class="course-name-lg">Khóa Chuyên Nghiệp</div>
+        <div class="course-dur">4–6 tháng · Full kỹ năng · Chứng chỉ Sở LĐ</div>
+        <div class="course-price-h">20.000.000đ</div>
+        <div class="course-tagline">Cắt – Uốn – Nhuộm – Phục hồi.<br>Linh hoạt đầu ra: đi làm hoặc tự mở tiệm.</div>
+        <button class="btn-course">Xem chi tiết →</button>
+      </div>
+      <div class="course-hero-card gold-border" onclick="window.location='khoa-hoc.html#kyket'">
+        <div class="course-top-badge badge-special">🤝 CAM KẾT ĐÔI BÊN</div>
+        <div class="course-name-lg">Khóa Ký Kết</div>
+        <div class="course-dur">4–6 tháng · Full kỹ năng · Chứng chỉ Sở LĐ</div>
+        <div class="course-price-h">25.000.000đ</div>
+        <div class="course-tagline">30Shine ký cam kết việc làm bằng văn bản.<br>Gắn bó 18 tháng → nhận thưởng 10 triệu.</div>
+        <button class="btn-course">Xem chi tiết →</button>
+      </div>
+    </div>
+    <div class="secondary-label">Khóa học khác</div>
+    <div class="courses-secondary">
+      <div class="course-mini" onclick="window.location='khoa-hoc.html#captoc'"><div class="course-mini-icon">✂️</div><div><div class="course-mini-name">Khóa Cấp Tốc</div><div class="course-mini-meta">2–3 tháng · Chuyên cắt</div></div><div class="course-mini-price">10.000.000đ</div></div>
+      <div class="course-mini" onclick="window.location='khoa-hoc.html#nangcao'"><div class="course-mini-icon">🎨</div><div><div class="course-mini-name">Khóa Nâng Cao</div><div class="course-mini-meta">1–3 tháng · Uốn/Nhuộm</div></div><div class="course-mini-price">10.000.000đ</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-label">Lộ trình</div>
+      <h2 class="section-title">Từ đăng ký đến có việc làm</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">1</div><div class="step-title">Tư vấn miễn phí</div><div class="step-desc">Gặp nhân viên tư vấn, xác định mục tiêu và chọn khóa phù hợp nhất.</div></div>
+      <div class="process-step"><div class="step-num">2</div><div class="step-title">Thử nghề</div><div class="step-desc">Trải nghiệm 1 buổi thực tế tại trung tâm trước khi quyết định nhập học.</div></div>
+      <div class="process-step"><div class="step-num">3</div><div class="step-title">Học & thực hành</div><div class="step-desc">Học lý thuyết nền + thực hành hàng ngày trên hàng trăm khách hàng thật.</div></div>
+      <div class="process-step"><div class="step-num">4</div><div class="step-title">Tốt nghiệp</div><div class="step-desc">Nhận chứng chỉ sơ cấp nghề do Sở Lao động–TBXH cấp. Bộ đồ nghề 3 triệu.</div></div>
+      <div class="process-step"><div class="step-num">5</div><div class="step-title">Có việc làm</div><div class="step-desc">Vào làm ngay tại 100+ salon 30Shine. Thu nhập 12–18 triệu/tháng.</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gray0)">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px">
+      <div class="section-label">Học viên nói gì</div>
+      <h2 class="section-title">Câu chuyện thật từ học viên</h2>
+    </div>
+    <div class="grid-3">
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Trước đây em làm shipper, thu nhập bấp bênh lắm. Sau 5 tháng học Khóa Ký Kết, giờ em làm tại 30Shine Cầu Giấy, thu nhập tháng vừa rồi 16 triệu."</p><div class="testimonial-author"><div class="author-avatar">H</div><div><div class="author-name">Nguyễn Minh Hoàng</div><div class="author-info">Học viên Khóa Ký Kết · Hà Nội</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Ba mẹ em ban đầu lo lắng lắm. Nhưng giờ thấy em có việc ổn định ngay sau khi tốt nghiệp, lại có cam kết bằng văn bản của 30Shine, gia đình yên tâm hơn nhiều."</p><div class="testimonial-author"><div class="author-avatar">T</div><div><div class="author-name">Trần Văn Tuấn</div><div class="author-info">Học viên Khóa Chuyên Nghiệp · TP. HCM</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Em là thợ cắt cũ, đi học thêm Khóa Nâng Cao về uốn nhuộm. Giờ doanh thu mỗi tháng tăng thêm gần 5 triệu nhờ làm thêm được dịch vụ uốn cho khách."</p><div class="testimonial-author"><div class="author-avatar">Đ</div><div><div class="author-name">Lê Quốc Đạt</div><div class="author-info">Học viên Khóa Nâng Cao · TP. HCM</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label" style="background:rgba(245,158,11,0.2);color:var(--gold)">Bắt đầu ngay hôm nay</div>
+    <h2 class="section-title" style="color:var(--white);margin-top:8px">Sẵn sàng thay đổi nghề nghiệp?</h2>
+    <p>Đặt lịch tư vấn miễn phí — chúng tôi sẽ liên hệ trong vòng 30 phút.</p>
+    <a href="lien-he.html" class="btn btn-gold btn-lg">Đăng ký tư vấn miễn phí →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="navbar-logo" style="margin-bottom:16px"><div class="logo-icon">✂</div><div class="logo-text"><span class="logo-name">30Shine Academy</span><span class="logo-sub">Trung tâm đào tạo nghề tóc nam</span></div></div>
+        <p class="footer-desc">Đào tạo nghề tóc nam chính quy, có đầu ra, được cấp phép bởi Sở Lao động – Thương binh & Xã hội.</p>
+      </div>
+      <div class="footer-col"><h4>Khóa học</h4><ul><li><a href="khoa-hoc.html#chuyennghiep">Khóa Chuyên Nghiệp</a></li><li><a href="khoa-hoc.html#kyket">Khóa Ký Kết</a></li><li><a href="khoa-hoc.html#captoc">Khóa Cấp Tốc</a></li><li><a href="khoa-hoc.html#nangcao">Khóa Nâng Cao</a></li></ul></div>
+      <div class="footer-col"><h4>Thông tin</h4><ul><li><a href="ve-chung-toi.html">Về chúng tôi</a></li><li><a href="lien-he.html">Liên hệ & Đăng ký</a></li></ul></div>
+      <div class="footer-col footer-contact"><h4>Liên hệ</h4><p><span>📍</span><span>10 Trần Phú, Hà Đông, Hà Nội</span></p><p><span>📞</span><span>0333 456 907 – Quân Đặng</span></p><p><span>📍</span><span>27A Nguyễn Văn Lạc, Bình Thạnh, TP. HCM</span></p><p><span>📞</span><span>0979 782 962 – Trung Minh</span></p></div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom"><span>© 2026 30Shine Academy · Được cấp phép bởi Sở Lao động TBXH</span></div>
+  </div>
+</footer>
+
+<script>
+  function openMobileNav()  { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>
