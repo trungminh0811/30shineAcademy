@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>30Shine Academy – Trung Tâm Đào Tạo Nghề Tóc Nam Chính Quy</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -841,21 +842,34 @@
     }
     .hero-right {
       height: 260px;
+      order: -1;
     }
     .hero-right::after {
       background: linear-gradient(to bottom, rgba(6,21,46,0.5) 0%, rgba(6,21,46,0) 50%);
     }
     .hero-left {
-      padding: 40px 24px 32px;
+      padding: 32px 20px 36px;
+      text-align: center;
+      align-items: center;
     }
-    .stats { justify-content: flex-start; }
+    .hero-logo-wrap { margin-left: auto; margin-right: auto; }
+    .hero-academy-label { margin-bottom: 14px; }
+    .hero-divider { margin: 14px auto; }
+    .hero p { text-align: center; margin: 0 auto 24px; }
+    .stats { justify-content: center; }
+    .btn-primary { align-self: center !important; }
   }
 
   @media (max-width: 480px) {
+    .hero-right { height: 210px; }
+    .hero h1 { font-size: 28px; }
+    .hero h1 span { font-size: 20px; }
+    .stat-number { font-size: 24px; }
     .form-box { padding: 24px 20px; }
     .modal { padding: 24px 20px; }
     .stats { gap: 8px; }
-    .stat { padding: 12px 14px; min-width: 90px; }
+    .stat { padding: 12px 14px; min-width: 86px; }
+    section { padding: 40px 16px; }
   }
 </style>
 
