@@ -886,6 +886,27 @@
     .course-for { font-size: 10px; padding: 6px 8px; margin-bottom: 10px; }
     .btn-outline { font-size: 11px; padding: 8px 12px; }
     .badge-card { font-size: 8px; padding: 3px 10px; }
+
+    /* Why: 2 cột trên mobile */
+    .why-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .why-item { padding: 16px 10px; }
+    .why-icon { font-size: 26px; margin-bottom: 8px; }
+    .why-title { font-size: 12.5px; margin-bottom: 6px; }
+    .why-desc { font-size: 11px; }
+
+    /* Journey: 3 cột trên mobile */
+    .journey-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .journey-tag { font-size: 11px; padding: 18px 8px 8px; }
+    .journey-body { padding: 8px 10px 12px; }
+    .journey-desc { font-size: 11px; }
+
+    /* Process: gọn lại spacing */
+    .process-steps { gap: 0; }
+    .step-body { padding-bottom: 18px; }
+    .step-title { font-size: 14px; }
+    .step-desc { font-size: 12px; }
+    .step-num { width: 34px; height: 34px; font-size: 13px; }
+    .process-step:not(:last-child)::after { left: 16px; top: 34px; }
   }
 </style>
 
