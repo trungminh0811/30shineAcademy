@@ -63,10 +63,6 @@
     background: linear-gradient(to right, rgba(6,21,46,0.6) 0%, rgba(6,21,46,0) 40%);
   }
 
-  .hero-inner { position: relative; z-index: 2; }
-
-
-
   .hero-logo-wrap {
     display: inline-block;
     background: #fff;
@@ -127,7 +123,7 @@
     height: 3px;
     background: var(--gold);
     border-radius: 2px;
-    margin: 18px auto;
+    margin: 18px 0;
     opacity: 0.8;
   }
 
@@ -141,7 +137,7 @@
 
   .stats {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
     margin-bottom: 36px;
     flex-wrap: wrap;
@@ -611,30 +607,6 @@
     line-height: 1.55;
   }
 
-  /* ===== MID CTA ===== */
-  .mid-cta {
-    background: linear-gradient(135deg, #EFF6FF 0%, #FEF9ED 100%);
-    border-top: 1px solid #E5E7EB;
-    border-bottom: 1px solid #E5E7EB;
-    padding: 36px 20px;
-    text-align: center;
-  }
-
-  .mid-cta p {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 16px;
-  }
-
-  .mid-cta span {
-    font-weight: 400;
-    color: var(--gray);
-    font-size: 14px;
-    display: block;
-    margin-top: 4px;
-  }
-
   /* ===== FORM ===== */
   .form-section {
     background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
@@ -897,9 +869,9 @@
       <div class="hero-academy-label">Academy · Trung tâm đào tạo nghề tóc nam</div>
       <div class="hero-badge">✅ Được cấp phép bởi Sở Lao động – Thương binh & Xã hội</div>
       <h1>Học nghề tóc nam<br><span>chính quy – có đầu ra</span></h1>
-      <div class="hero-divider" style="margin:18px 0;"></div>
+      <div class="hero-divider"></div>
       <p>Thực hành 100% trên đầu thật. Chứng chỉ Sở Lao động.<br>Cam kết việc làm ngay sau tốt nghiệp.</p>
-      <div class="stats" style="justify-content:flex-start;">
+      <div class="stats">
         <div class="stat">
           <span class="stat-number">100+</span>
           <span class="stat-label">Salon 30Shine<br>toàn quốc</span>
@@ -1141,7 +1113,7 @@
 
 
 <!-- PROCESS -->
-<section class="process section-pad">
+<section class="process">
   <div class="container">
     <h2 class="section-title">Quy trình đăng ký</h2>
     <p class="section-sub">5 bước — từ liên hệ đến ngày khai giảng</p>
@@ -1186,7 +1158,7 @@
 </section>
 
 <!-- FORM -->
-<section class="form-section section-pad" id="dang-ky">
+<section class="form-section" id="dang-ky">
   <div class="container">
     <h2 class="section-title">Đăng ký tư vấn miễn phí</h2>
     <p class="section-sub">Để lại thông tin — chúng tôi sẽ liên hệ trong vòng 30 phút</p>
