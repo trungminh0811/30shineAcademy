@@ -1191,46 +1191,47 @@
     <h2 class="section-title">Đăng ký tư vấn miễn phí</h2>
     <p class="section-sub">Để lại thông tin — chúng tôi sẽ liên hệ trong vòng 30 phút</p>
     <div class="form-box">
-      <div id="formMain">
-        <div class="form-group">
-          <label for="fname">Họ và tên</label>
-          <input type="text" id="fname" placeholder="Nguyễn Văn A" autocomplete="name">
-        </div>
-        <div class="form-group">
-          <label for="fphone">Số điện thoại</label>
-          <input type="tel" id="fphone" placeholder="0912 345 678" autocomplete="tel">
-        </div>
-        <div class="form-group">
-          <label for="fcourse">Khoá học quan tâm</label>
-          <select id="fcourse">
-            <option value="">— Chọn khoá học —</option>
-            <option>Khóa Chuyên Nghiệp (4–6 tháng)</option>
-            <option>Khóa Ký Kết (4–6 tháng)</option>
-            <option>Khóa Cấp Tốc (2–3 tháng)</option>
-            <option>Khóa Nâng Cao (1–3 tháng)</option>
-            <option>Chưa biết – cần tư vấn thêm</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="flocation">Cơ sở gần bạn</label>
-          <select id="flocation">
-            <option value="">— Chọn cơ sở —</option>
-            <option>Hà Nội – Hà Đông</option>
-            <option>TP. Hồ Chí Minh – Bình Thạnh</option>
-          </select>
-        </div>
-        <button class="btn-submit" onclick="submitForm()">ĐĂNG KÝ TƯ VẤN NGAY →</button>
-        <p class="form-note">🔒 Thông tin của bạn được bảo mật tuyệt đối</p>
+      <div id="formContent">
+        <form id="registerForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Họ và tên *</label>
+            <input type="text" id="name" name="name" placeholder="Nguyễn Văn A" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại *</label>
+            <input type="tel" id="phone" name="phone" placeholder="0xxx xxx xxx" required />
+          </div>
+          <div class="form-group">
+            <label for="course">Khóa học quan tâm</label>
+            <select id="course" name="course">
+              <option value="">— Chọn khóa học —</option>
+              <option value="captoc">Khóa Cấp Tốc (2–3 tháng)</option>
+              <option value="chuyennghiep">Khóa Chuyên Nghiệp (4–6 tháng)</option>
+              <option value="kyket">Khóa Ký Kết (4–6 tháng)</option>
+              <option value="nangcao">Khóa Nâng Cao (1–3 tháng)</option>
+              <option value="chuabiet">Chưa biết – cần tư vấn</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="location">Cơ sở gần bạn</label>
+            <select id="location" name="location">
+              <option value="">— Chọn cơ sở —</option>
+              <option value="hn">Hà Nội – Hà Đông</option>
+              <option value="hcm">TP. Hồ Chí Minh – Bình Thạnh</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit">Đăng ký tư vấn miễn phí →</button>
+          <p class="form-note">🔒 Thông tin của bạn được bảo mật tuyệt đối</p>
+        </form>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="success-icon">🎉</div>
         <h3>Đăng ký thành công!</h3>
-        <p>Chuyên viên tư vấn sẽ liên hệ với bạn trong vòng <strong>30 phút</strong>.</p>
+        <p>Cảm ơn bạn đã quan tâm đến 30Shine Academy.<br>Chúng tôi sẽ liên hệ với bạn trong vòng <strong>30 phút</strong> để tư vấn chi tiết.</p>
       </div>
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1246,15 +1247,120 @@
   <div class="footer-bottom">© 2026 30Shine Academy. Trực thuộc hệ thống 30Shine — chuỗi salon tóc nam lớn nhất Việt Nam.</div>
 </footer>
 
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal-captoc">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">✂️</div>
+    <div class="modal-tag">Entry · 25–45 tuổi</div>
+    <h2>Khóa Cấp Tốc</h2>
+    <div class="modal-price">2–3 tháng · Chuyên cắt</div>
+    <hr class="modal-divider" />
+    <ul>
+      <li>15 kiểu tóc cổ điển – thịnh hành</li>
+      <li>6 kỹ thuật Fade Barber – Tattoo Hair</li>
+      <li>Tư duy thiết kế form Nhật – Hàn – Trung</li>
+      <li>Thực hành trên >300 khách hàng thật</li>
+      <li>Hỗ trợ ký túc xá học viên ngoại tỉnh</li>
+    </ul>
+    <hr class="modal-divider" />
+    <p style="font-size:13px;color:#6B7280;margin-bottom:16px">Phù hợp: Muốn vào nghề nhanh, học nghề tay trái, mở tiệm bình dân.</p>
+    <button class="modal-cta" onclick="scrollToForm()">Đăng ký tư vấn miễn phí →</button>
+  </div>
+  <div class="modal" id="modal-chuyennghiep">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">🏆</div>
+    <div class="modal-tag">Flagship · 18–35 tuổi</div>
+    <h2>Khóa Chuyên Nghiệp</h2>
+    <div class="modal-price">4–6 tháng · Full kỹ năng</div>
+    <hr class="modal-divider" />
+    <ul>
+      <li>Full kỹ năng: Cắt – Uốn – Nhuộm – Phục hồi</li>
+      <li>Thực hành >600 khách thật</li>
+      <li>Chứng chỉ sơ cấp nghề – Sở Lao động TBXH</li>
+      <li>Kỹ năng mềm: giao tiếp, bán hàng, TikTok</li>
+      <li>Hỗ trợ kết nối việc làm tại 100+ salon 30Shine</li>
+      <li>Bộ đồ nghề trị giá 3.000.000đ</li>
+      <li>Hỗ trợ ký túc xá học viên ngoại tỉnh</li>
+    </ul>
+    <hr class="modal-divider" />
+    <p style="font-size:13px;color:#6B7280;margin-bottom:16px">Thu nhập khởi điểm 12–18 triệu/tháng. Linh hoạt đầu ra: đi làm hoặc tự mở tiệm.</p>
+    <button class="modal-cta" onclick="scrollToForm()">Đăng ký tư vấn miễn phí →</button>
+  </div>
+  <div class="modal featured" id="modal-kyket">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">🤝</div>
+    <div class="modal-tag">Cam kết đôi bên · 18–35 tuổi</div>
+    <h2>Khóa Ký Kết</h2>
+    <div class="modal-price">4–6 tháng · Cam kết việc làm bằng văn bản</div>
+    <hr class="modal-divider" />
+    <p style="font-size:13px;font-style:italic;color:#92400E;margin-bottom:12px">"Học có cam kết. Làm có đảm bảo."</p>
+    <ul>
+      <li>Full kỹ năng như Khóa Chuyên Nghiệp</li>
+      <li>30Shine ký cam kết việc làm bằng văn bản</li>
+      <li>Thu nhập khởi điểm 12–18 triệu/tháng</li>
+      <li>Gắn bó 18 tháng → nhận thưởng 10.000.000đ</li>
+      <li>Chứng chỉ sơ cấp nghề – Sở Lao động TBXH</li>
+      <li>Bộ đồ nghề trị giá 3.000.000đ</li>
+      <li>Hỗ trợ ký túc xá trong suốt quá trình học</li>
+    </ul>
+    <hr class="modal-divider" />
+    <p style="font-size:13px;color:#6B7280;margin-bottom:16px">Gắn bó 18 tháng sau tốt nghiệp → nhận thưởng 10.000.000đ. Hoàn vốn nhanh ngay tháng đầu đi làm.</p>
+    <button class="modal-cta" onclick="scrollToForm()" style="background:#D97706">Đăng ký tư vấn miễn phí →</button>
+  </div>
+  <div class="modal" id="modal-nangcao">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-icon">🎨</div>
+    <div class="modal-tag">Add-on · 20–45 tuổi</div>
+    <h2>Khóa Nâng Cao</h2>
+    <div class="modal-price">1–3 tháng · Uốn / Nhuộm</div>
+    <hr class="modal-divider" />
+    <ul>
+      <li>Uốn / Duỗi / Phồng tóc – thực hành >50 khách</li>
+      <li>Ép Side – K-Perm công nghệ Hàn Quốc</li>
+      <li>Nhuộm màu tự nhiên & thời trang – >50 khách</li>
+      <li>Tẩy tóc an toàn – thực hành >15 khách</li>
+      <li>Có thể học trọn gói hoặc chọn 1 module đơn</li>
+    </ul>
+    <hr class="modal-divider" />
+    <p style="font-size:13px;color:#6B7280;margin-bottom:16px">Dành cho thợ tóc đã có kỹ năng cắt, muốn mở rộng thêm dịch vụ uốn/nhuộm.</p>
+    <button class="modal-cta" onclick="scrollToForm()">Đăng ký tư vấn miễn phí →</button>
+  </div>
+</div>
+
 <script>
-function submitForm() {
-  var name = document.getElementById('fname').value.trim();
-  var phone = document.getElementById('fphone').value.trim();
-  if (!name || !phone) {
-    alert('Vui lòng điền đầy đủ họ tên và số điện thoại.');
-    return;
+  function openModal(id) {
+    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    document.getElementById('modal-' + id).style.display = 'block';
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-  document.getElementById('formMain').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
-}
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  function scrollToForm() {
+    closeModal();
+    setTimeout(() => {
+      document.getElementById('dang-ky').scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const course = document.getElementById('course').value;
+    const location = document.getElementById('location').value;
+    if (!name || !phone) return;
+    const params = new URLSearchParams({ name, phone, course, location });
+    fetch('https://script.google.com/macros/s/AKfycbyWwe4XHL852facMqwjQ18Vonjp2gQ-0c4jCe1RBkvVb4xC7ayov8xU4x3C-UlKVzyMSA/exec?' + params.toString(), {
+      method: 'GET', mode: 'no-cors',
+    }).catch(() => {});
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
